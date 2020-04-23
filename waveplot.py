@@ -26,5 +26,19 @@ librosa.display.specshow(S_DB, sr=sr, hop_length=hop_length, x_axis='time', y_ax
 plt.colorbar(format='%+2.0f dB')
 
 # 逆だと真っ白になる
-plt.savefig("figure.png")
+plt.savefig("wave.png")
+plt.show()
+
+dlen = (128, 1840)  # ノイズデータのデータ長
+mean = 0.0  # ノイズの平均値
+std = 1.0  # ノイズの分散
+
+noise = np.random.normal(mean, std, dlen)
+
+S_DB_NOISE = S_DB + noise
+librosa.display.specshow(S_DB_NOISE, sr=sr, hop_length=hop_length, x_axis='time', y_axis='mel')
+plt.colorbar(format='%+2.0f dB')
+
+# 逆だと真っ白になる
+plt.savefig("wave_noise.png")
 plt.show()
